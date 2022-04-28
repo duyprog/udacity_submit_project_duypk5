@@ -33,11 +33,13 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     if(!image_url){
       res.status(400).send('The URL is not valid')
     }
-    const file_path = await filterImageFromURL(image_url)
-    res.sendFile(file_path, function(){
-      deleteLocalFiles([file_path])
-    })
-    if (!file_path){
+    try{
+      const file_path = await filterImageFromURL(image_url)
+      res.sendFile(file_path, function(){
+        deleteLocalFiles([file_path])
+      })
+    }
+    catch{
       res.status(422).send("Unprocessable Entity")
     }
   })

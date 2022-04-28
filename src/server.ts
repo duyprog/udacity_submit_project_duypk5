@@ -31,7 +31,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   app.get('/filteredimage', async(req, res) =>{
     const image_url = req.query.image_url 
     if(!image_url){
-      res.status(400).send('The URL is not valid')
+      res.status(400).send('The URL is required')
     }
     try{
       const file_path = await filterImageFromURL(image_url)

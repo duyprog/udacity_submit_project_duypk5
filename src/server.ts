@@ -37,6 +37,9 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     res.sendFile(file_path, function(){
       deleteLocalFiles([file_path])
     })
+    if (!file_path){
+      res.status(422).send("Unprocessable Entity")
+    }
   })
   //! END @TODO1
   
